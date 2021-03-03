@@ -26,7 +26,8 @@
         function appendTasks(data) {
             data.forEach(task => {
                 // <li> Titre taches - status ... </li>
-                $('#todo-list').append(`<li>${task.title} - ${task.statu}</li>`);
+                $('#todo-list').append(`<li>${task.title} - ${task.completed}</li>`);
+                // $('#todo-list').append(new TodoComponent(task.title, task.completed));
             });
         }
         // load with ajax request
