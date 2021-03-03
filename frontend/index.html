@@ -8,13 +8,34 @@
 </head>
 
 <body>
+    <h1>My todo list</h1>
     <ul id="todo-list">
-
+        <!-- ajouter ici mes tasks récupérées depuis le Web service  -->
     </ul>
+
+    <!-- jquery => manipiulation DOM  + appels AJAX -->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+    <!-- traitement JS -->
     <script>
-        $.getJSON('http://localhost:8282/todos', function (data) {
-            // <li> Titre taches - status ... </li>
+        // DOM pret?
+        $(document).ready(function () {
+            loadTasks();
         });
+        // display tasks
+        function appendTasks(data) {
+            data.forEach(task => {
+                // <li> Titre taches - status ... </li>
+                $('#todo-list').append(`<li>${task.title} - ${task.statu}</li>`);
+            });
+        }
+        // load with ajax request
+        function loadTasks() {
+            $.getJSON('http://localhost:8282/todos', function (data) {
+                console.log(data);
+                appendTasks(data);
+            });
+        }
     </script>
 </body>
 
